@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+}
+
+:root {
+  --neutral-500: #9095a1;
+  --neutral-700: #323743;
+  --neutral-900: #171a1f;
+}
+
+h1 {
+  color: var(--neutral-900);
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+}
+small{
+  color: var(--neutral-500);
+  font-family: 'Open Sans';
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
+label {
+  color: var(--neutral-700);
+  font-family: 'Open Sans';
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
