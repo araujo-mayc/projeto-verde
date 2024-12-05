@@ -1,11 +1,53 @@
+<template>
+    <Head title="Entrar" />
+    <div class="w-full min-h-screen flex flex-col items-center pt-12 pb-9 px-4">
+        <img class="max-w-20 h-auto rounded-full" src="https://placehold.co/600?text=Logo" alt="">
+        <div class="flex flex-col items-center py-8">
+            <h1>Bem vindo!</h1>
+            <small>Entre para anunciar seus produtos e serviços!</small>
+        </div>
+        <form class="flex flex-col grow gap-y-3 w-full max-w-96" @submit.prevent="submit">
+            <div class="flex flex-col gap-y-1">
+                <label for="email">Email</label>
+                <InputText v-model="form.email" id="email" type="email" autocomplete="username" required fluid />
+                <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+            <div class="flex flex-col gap-y-1">
+                <label for="password">Senha</label>
+                <InputText v-model="form.password" id="password" type="password" autocomplete="password" required fluid />
+                <InputError class="mt-2" :message="form.errors.password" />
+            </div>
+            <div class="flex gap-x-2 my-3">
+                <Checkbox v-model="form.remember" value="remember" binary />
+                <label for="remenber">Lembrar deste dispostivo</label>
+            </div>
+            <Button @click="submit" label="Entrar" fluid />
+        </form>
+
+        <div class="w-full flex flex-col items-center max-w-96">
+            <label class="my-5" for="terms">Esqueceu a senha? <Link :href="route('password.request')" class="text-sky-600">redefinir senha</Link></label>
+
+            <Divider align="center" type="solid">
+                <small>Ou</small>
+            </Divider>
+            <Button @click="" label="Entrar com o Google" severity="danger" icon="pi pi-google" fluid />
+        </div>
+        <div class="w-full flex flex-col items-center max-w-96 max-h-64">
+            <label class="pt-10 text-center" for="terms">Não possui conta? <Link :href="route('register')" class="text-sky-600">criar conta</Link></label>
+            <label class="pt-10 text-center" for="terms">Ao entrar, você está concordando com nossos <Link href="#" class="text-sky-600">Termo de Uso</Link> e <Link href="#" class="text-sky-600">Política de Privacidade</Link></label>
+        </div>
+    </div>
+</template>
+
 <script setup>
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+
+import InputText from 'primevue/inputtext';
+import Button from 'primevue/button';
+import Divider from 'primevue/divider';
+import Checkbox from 'primevue/checkbox';
+
 
 defineProps({
     canResetPassword: {
@@ -29,72 +71,3 @@ const submit = () => {
 };
 </script>
 
-<template>
-    <GuestLayout>
-        <Head title="Log in" />
-
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4 block">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600"
-                        >Remember me</span
-                    >
-                </label>
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
-</template>
