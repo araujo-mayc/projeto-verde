@@ -6,8 +6,8 @@
         <img class="max-w-20 h-auto rounded-full" src="https://placehold.co/600?text=Logo" alt="">
         <div class="max-w-96 flex flex-col p-6 gap-y-5 shadow-xl rounded-lg">
             <div class="flex flex-col gap-y-3 text-center">
-                <h1>Esqueceu a Senha?</h1>
-                <small class="text-justify">Sem problema! Basta nos informar seu endereço de 
+                <h2 class="font-bold">Esqueceu a Senha ?</h2>
+                <small class="text-justify text-[var(--neutral-700)]">Sem problema! Basta nos informar seu endereço de 
                     email e nós lhe enviaremos um link de redefinição de senha que permitirá 
                     que você escolha uma nova.
                 </small>
