@@ -14,7 +14,7 @@ class AdProductController extends Controller
      */
     public function index()
     {
-        //
+        return AdProduct::all();
     }
 
     /**

@@ -21,7 +21,7 @@ class AdProductFactory extends Factory
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(3),
             'images' => $this->faker->imageUrl(640, 480, 'food'),
-            'category' => $this->faker->numberBetween(1, 10),
+            'category' => $this->faker->sentence(1),
             'prices' => $this->faker->numberBetween(10, 1000),
             'promotional_price' => $this->faker->optional()->numberBetween(10, 1000),
             'quantity' => $this->faker->numberBetween(1, 100),
