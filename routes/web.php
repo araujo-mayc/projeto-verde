@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
+use App\Models\City;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -18,9 +19,15 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/selecionar-cidade', function () {
+Route::get('/cidades', function () {
     return Inertia::render('Profile/SelectCity');
 })->name('select.city');
+
+Route::get('/cidades/anuncios/{city:name}', function (City $city) {
+    return Inertia::render('Marketplace', [
+        'city' => $city
+    ]);
+})->name('marketplace');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
