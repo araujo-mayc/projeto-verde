@@ -22,7 +22,7 @@
         <DataView :value="adproducts" layout="grid">
     <template #grid="slotProps">
         <div class="grid grid-cols-12 gap-4">
-            <div v-for="(item, index) in slotProps.items" :key="index" class="col-span-6 md:col-span-4 xl:col-span-6 p-2">
+            <div @click="selectItem(item)" v-for="(item, index) in slotProps.items" :key="index" class="col-span-6 md:col-span-4 xl:col-span-6 p-2">
                 <div class="bg-surface-0 dark:bg-surface-900 flex flex-col">
                   <img class="rounded w-full" src="https://placehold.co/600x400" alt=""/>
                   <div class="pt-3 px-1">
@@ -49,7 +49,7 @@ import SelectButton from 'primevue/selectbutton';
 import DataView from 'primevue/dataview';
 import { FilterMatchMode } from '@primevue/core/api';
 import { ref, onMounted } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import useAdProducts from '@/composables/useAdProducts';
 
 defineProps({
@@ -66,6 +66,10 @@ const options = ref([
   {name:'Serviços', value:'services'}
 ]);
 const selectedType = ref(options.value[0]);
+
+const selectItem = (item) => {
+  router.visit(`/cidades/anuncios/item/${item.id}`);
+};
 
 
 onMounted(() => {
