@@ -5,6 +5,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Models\AdProduct;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -26,6 +28,15 @@ Route::get('/cidades', function () {
 Route::get('/cidades/anuncios/{city:name}', function (City $city) {
     return Inertia::render('Marketplace', [
         'city' => $city
+    ]);
+})->name('marketplace');
+
+Route::get('/cidades/anuncios/item/{adProduct:id}', function (AdProduct $adProduct) {
+    $sellerInfo = (new UserController)->getSellerInfo($adProduct->user_id);
+
+    return Inertia::render('ProductDetails', [
+        'product' => $adProduct,
+        'sellerInfo' => $sellerInfo
     ]);
 })->name('marketplace');
 
