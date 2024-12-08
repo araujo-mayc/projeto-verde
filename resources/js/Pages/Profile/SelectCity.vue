@@ -32,6 +32,7 @@ import Column from 'primevue/column';
 import { ref, onMounted, watch } from 'vue';
 import useCities from '@/composables/useCities';
 import { FilterMatchMode } from '@primevue/core/api';
+import { router } from '@inertiajs/vue3';
 
 const selectedCity = ref(null);
 const filters = ref({ global: { value: null, matchMode: FilterMatchMode.CONTAINS }});
@@ -40,7 +41,7 @@ const { cities, fetchCities, loading, error } = new useCities();
 
 watch(selectedCity, (newValue) => {
   if (newValue == null) return
-   // Carregar os anúncios da cidade escolhida
+  router.visit(`/cidades/anuncios/${newValue.name}`);
 });
 
 onMounted(() => {
