@@ -11,7 +11,7 @@ export default class useAdProducts {
     const fetchAdProducts = async () => {
       loading.value = true;
       try {
-        const response = await adProductService.getAdProducts();        
+        const response = await adProductService.getAdProducts();
         adproducts.value.splice(0, adproducts.value.length, ...response.data);
       } catch (err) {
         error.value = err.message;
@@ -20,6 +20,19 @@ export default class useAdProducts {
       }
     };
 
-    return { adproducts, fetchAdProducts, loading, error };
+    const fetchAdProductById = async (Id) => {
+      loading.value = true;
+      try {
+        const response = await adProductService.getById(Id);
+        return response.data;
+      } catch (err) {
+        error.value = err.message;
+        return null;
+      } finally {
+        loading.value = false;
+      }
+    };
+
+    return { adproducts, fetchAdProducts, fetchAdProductById, loading, error };
   }
 }

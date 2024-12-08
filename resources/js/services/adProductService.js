@@ -12,4 +12,8 @@ export default {
   getAdProducts() {
     return apiClient.get('/');
   },
+
+  getById(Id) {
+    return apiClient.get(`/${Id}`);
+  },
 };

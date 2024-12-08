@@ -28,6 +28,7 @@ class AdProductFactory extends Factory
             'locate' => 'Rio Pomba - MG',
             'contact_link' => 'https://web.whatsapp.com/send?phone=5532998424469/?text=Ol%C3%A1%2C+vi+o+seu+an%C3%BAncio+' . urlencode($this->faker->sentence(3)) . '+no+app+Feirine%2C+e+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+so+bre+o+produto.',
             'expired_at' => $this->faker->dateTimeBetween('now', '+3 months'),
+            'type' => $this->faker->randomElement(['new', 'new_used','good','used']),
         ];
     }
 }

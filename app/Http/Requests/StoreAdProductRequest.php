@@ -26,6 +26,7 @@ class StoreAdProductRequest extends FormRequest
             'description' => 'required|string|max:500',
             'images' => 'required|json',
             'category' => 'required|string|max:255',
+            'type' => 'required|string|in:new,new_used,good,used',
             'prices' => 'required|json',
             'prices.*' => 'numeric|between:0,999999,99',
             'promotional_price' => 'nullable|numeric|between:0,999999,99',

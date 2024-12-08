@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('promotional_price')->nullable();
             $table->integer('quantity');
             $table->enum('status',['active','expired','pending','aproved','archived']);
+            $table->enum('type',['new','new_used','good','used']);
             $table->string('locate');
             $table->json('tags')->nullable();
             $table->string('contact_link');

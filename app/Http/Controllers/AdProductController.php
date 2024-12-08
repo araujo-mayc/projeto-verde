@@ -44,6 +44,7 @@ class AdProductController extends Controller
             'description' => $validated['description'],
             'images' => $validated['images'],
             'category' => $validated['category'],
+            'type' => $validated['type'],
             'prices' => $validated['prices'],
             'promotional_price' => $validated['promotional_price'] || null,
             'quantity' => $validated['quantity'],

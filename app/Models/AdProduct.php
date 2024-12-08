@@ -11,6 +11,9 @@ class AdProduct extends Model
     /** @use HasFactory<\Database\Factories\AdProductFactory> */
     use HasFactory;
 
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected $fillable = [
         'user_id',
         'title',
@@ -21,6 +24,7 @@ class AdProduct extends Model
         'promotional_price',
         'quantity',
         'status',
+        'type',
         'locate',
         'tags',
         'contact_link',
@@ -36,7 +40,7 @@ class AdProduct extends Model
     ];
 
     protected $hidden = [
-        'created_at',
+        'user_id',
         'updated_at',
     ];
 
