@@ -25,6 +25,14 @@ h2 {
   font-size: 1.25rem /* 20px */;
   line-height: 1.75rem /* 28px */;
 }
+
+h3 {
+  color: var(--neutral-700);
+  font-family: 'Open Sans';
+  font-weight: 500;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
 small{
   color: var(--neutral-500);
   font-family: 'Open Sans';
@@ -34,6 +42,14 @@ small{
 label {
   color: var(--neutral-700);
   font-family: 'Open Sans';
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
+
+span {
+  color: var(--neutral-700);
+  font-family: 'Open Sans';
+  font-weight: 700;
   font-size: 1rem; /* 16px */
   line-height: 1.5rem; /* 24px */
 }
