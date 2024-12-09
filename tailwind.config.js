@@ -10,6 +10,6 @@ export default {
     ],
 
     theme: {},
-
+    darkMode: 'selector',
     plugins: [forms],
 };

@@ -46,7 +46,7 @@ createInertiaApp({
                 theme: {
                     preset: MyPreset,
                     options: {
-                        darkModeSelector: 'none',
+                        darkModeSelector: false,
                     }
                 }
             })
