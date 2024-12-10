@@ -1,26 +1,30 @@
 <template>
-    <div class="w-full max-w-screen-md min-h-screen flex flex-col py-6 px-4">
-      <h2 class="pb-3">Escolha a cidade</h2>
-      <DataTable :value="cities" :loading="loading" :filters="filters"
-        v-model:selection="selectedCity" selectionMode="single" dataKey="id"
-        size="large" stripedRows >
-        <template #header>
-                <div class="w-full">
-                  <IconField>
-                    <InputIcon class="pi pi-search" />
-                    <InputText v-model="filters['global'].value" placeholder="Buscar cidade" fluid />
-                  </IconField>
-                </div>
+  <MainLayout :hideMenu="true">
+    <template #main>
+      <div class="w-full max-w-[500px] flex flex-col py-6 px-4 bg-white shadow-md">
+        <h2 class="pb-3 font-bold">Escolha a cidade</h2>
+        <DataTable :value="cities" :loading="loading" :filters="filters" v-model:selection="selectedCity"
+          selectionMode="single" dataKey="id" size="large" stripedRows
+          :pt="{ header: { style: 'padding: 0px '} }">
+          <template #header>
+            <div class="w-full ">
+              <IconField>
+                <InputIcon class="pi pi-search" />
+                <InputText v-model="filters['global'].value" placeholder="Buscar cidade" fluid />
+              </IconField>
+            </div>
+          </template>
+          <template #empty> Nenhuma cidade encontrada. </template>
+          <template #loading> Carregando cidades. Por favor, aguarde. </template>
+          <Column field="name">
+            <template #body="slotProps">
+              {{ slotProps.data.name }} - {{ slotProps.data.state }}
             </template>
-            <template #empty> Nenhuma cidade encontrada. </template>
-            <template #loading> Carregando cidades. Por favor, aguarde. </template>
-        <Column field="name">
-        <template #body="slotProps">
-            {{ slotProps.data.name }} - {{ slotProps.data.state }}
-        </template>
-    </Column>
-      </DataTable>
-    </div>
+          </Column>
+        </DataTable>
+      </div>
+    </template>
+  </MainLayout>
 </template>
 
 <script setup>
@@ -33,6 +37,7 @@ import { ref, onMounted, watch } from 'vue';
 import useCities from '@/composables/useCities';
 import { FilterMatchMode } from '@primevue/core/api';
 import { router } from '@inertiajs/vue3';
+import MainLayout from '@/Layouts/MainLayout.vue';
 
 const selectedCity = ref(null);
 const filters = ref({ global: { value: null, matchMode: FilterMatchMode.CONTAINS }});
