@@ -11,19 +11,24 @@
                 <Button label="Ajuda" severity="secondary" text />
             </div>
         </header>
-        <main class="bg-white">
-            <div class="min-h-[500px] bg-gradient-to-br from-sky-600 to-sky-400 py-5 px-8 md:px-16">
-                <div class="grid grid-cols-1 md:grid-cols-2 max-w-screen-lg mx-auto gap-10 items-center pt-10 md:pt-20">
-                    <div class="flex flex-col items-center md:items-start max-w-md mx-auto lg:mx-0">
-                        <h2 class="text-white font-bold text-4xl text-center lg:text-left mb-3">Descubra, Conecte e Negocie.</h2>
-                        <small class="text-white text-justify mb-7">Com o Feirine você conecta-se facilmente com os pequenos negócios e serviços da sua região. Encontre tudo o que precisa bem pertinho de você.</small>
-                        <Button label="Selecionar Cidade" severity="secondary" />
-                    </div>
-                    <div class="flex justify-center">
-                        <img class="w-auto max-h-[385px]" src="/images/picture_home_page_web.png" alt="">
+        <main class="bg-[var(--neutral-200)]">
+            <div class="max-h-[652px] flex lg:flex-row flex-col gap-4 bg-gradient-to-br from-sky-600 to-sky-400">
+                <div class="flex-1 flex items-center justify-center">
+                    <div class="p-6 pt-12 lg:p-12">
+                        <h1 class="text-3xl lg:text-5xl font-bold text-white mb-4 lg:leading-normal text-center lg:text-left">
+                            Descubra, Conecte e Negocie.
+                        </h1>
+                        <p class="max-w-screen-sm text-white leading-normal mb-8 text-center lg:text-left">
+                            Com o Feirine você conecta-se facilmente com os pequenos negócios e serviços da sua região. Encontre tudo o que precisa bem pertinho de você.
+                        </p>
+                        <Button label="Selecionar Cidade" @click="handleRouteButton('/cidades')" severity="secondary" />
                     </div>
                 </div>
+                <div class="flex-1 overflow-hidden">
+                    <img src="/images/picture_home_page_web.jpg" alt="hero-1" class="h-full w-full object-cover lg:[clip-path:polygon(12%_0,100%_0%,100%_100%,0_100%)]" />
+                </div>
             </div>
+
             <div class="min-h-[500px] flex flex-col p-6 items-center justify-center">
                 <h2 class="font-bold text-3xl text-center">Perguntas Frequentes</h2>
                 <DataTable v-model:expandedRows="expandedRows" :value="faqList" tableStyle="min-width: 42rem" dataKey="id" stripedRows >
@@ -43,7 +48,6 @@
                     <i class="pi pi-instagram"></i>
                 </div>
             </div>
-
         </footer>
     </div>
 </template>
