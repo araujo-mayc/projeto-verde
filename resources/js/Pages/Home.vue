@@ -25,18 +25,18 @@
                     </div>
                 </div>
                 <div class="flex-1 overflow-hidden">
-                    <img src="/images/picture_home_page_web.jpg" alt="hero-1" class="h-full w-full object-cover lg:[clip-path:polygon(12%_0,100%_0%,100%_100%,0_100%)]" />
+                    <img src="/images/picture_home_page_web.jpg" alt="" class="h-full w-full object-center lg:[clip-path:polygon(12%_0,100%_0%,100%_100%,0_100%)]" />
                 </div>
             </div>
 
-            <div class="min-h-[500px] flex flex-col p-6 items-center justify-center">
+            <div class="min-h-[500px] flex flex-col p-20 items-center gap-y-4">
                 <h2 class="font-bold text-3xl text-center">Perguntas Frequentes</h2>
-                <DataTable v-model:expandedRows="expandedRows" :value="faqList" tableStyle="min-width: 42rem" dataKey="id" stripedRows >
-                    <Column field="title" class="font-semibold" ></Column>
+                <DataTable v-model:expandedRows="expandedRows" :value="faqList" tableStyle="width: 50rem" dataKey="id" stripedRows >
+                    <Column field="title" class="font-semibold" />
                     <template #expansion="slotProps">
-                        <h5 class="py-2 max-w-2xl">{{ slotProps.data.description }}</h5>
+                        <h5 class="py-2 pr-8">{{ slotProps.data.description }}</h5>
                     </template>
-                    <Column expander style="width: 5rem" />
+                    <Column expander style="width: 5%" />
                 </DataTable>
             </div>
         </main>
@@ -63,8 +63,8 @@ import { ref } from 'vue';
 const faqList = ref([
     { title: 'O que é o Feirine?', description: 'O Feirine é um aplicativo que conecta pessoas aos pequenos negócios e serviços locais da sua região, promovendo a economia local e facilitando o contato direto com vendedores e prestadores de serviços.', id: 1 },
     { title: 'Quem pode usar o Feirine?', description: 'Qualquer pessoa pode usar o Feirine! Seja para divulgar produtos ou serviços, ou para encontrar ofertas e profissionais na sua região. É ideal para pequenos empreendedores, autônomos e consumidores locais.', id: 2 },
-    { title: 'O Feirine cobra alguma taxa pelos anúncios?', description: 'O Feirine permite criar anúncios gratuitos por um período limitado. Para manter seu anúncio por mais tempo ou obter destaque, oferecemos planos pagos acessíveis.', id: 3 },
-    { title: 'Quais tipos de produtos ou serviços posso anunciar?', description: 'Você pode anunciar quase tudo! Desde alimentos, roupas, e artesanatos até serviços como manutenção, aulas e consultorias. Confira as categorias disponíveis no app.', id: 5 },
+    { title: 'O Feirine cobra alguma taxa pelos anúncios?', description: 'A publicação é 100% gratuita. Para manter seu anúncio por mais tempo ou obter destaque, oferecemos planos pagos acessíveis.', id: 3 },
+    { title: 'Quais tipos de produtos ou serviços posso anunciar?', description: 'Você pode anunciar quase tudo! Desde alimentos, roupas, móveis e artesanatos até serviços como manutenção, reparo, aulas e consultorias. Não deixe de conferir as categorias disponíveis.', id: 5 },
     { title: 'É seguro usar o Feirine?', description: 'Fazemos o possível para garantir um ambiente seguro, mas recomendamos sempre verificar as informações dos anunciantes e negociar com cuidado.', id: 4 },
     ]);
 const expandedRows = ref({});
