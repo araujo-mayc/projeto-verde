@@ -17,6 +17,6 @@ export default {
     return apiClient.get(`/${user_id}`);
   },
   getAllAdProductsByAuthUser() {
-    return apiClient.get(route('adproducts.auth'));
+    return apiClient.get('/auth');
   },
 };
