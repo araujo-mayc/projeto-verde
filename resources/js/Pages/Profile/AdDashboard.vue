@@ -31,7 +31,7 @@
                 <div class="grid grid-cols-12 gap-x-1 gap-y-3">
                     <div @click="" v-for="(item, index) in slotProps.items" :key="index" class="col-span-6 md:col-span-4 xl:col-span-3 p-2">
                         <div class="bg-surface-0 dark:bg-surface-900 flex flex-col">
-                          <img class="rounded w-full" :src="item.images|'https://placehold.co/600x400'" alt=""/>
+                          <img class="rounded w-full" :src="item.images || 'https://placehold.co/600x400?text=Sem+Imagem'" alt=""/>
                           <div class="pt-3 px-1">
                             <span>R$ {{ parseFloat(item.prices).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) }}</span>
                             <div>
@@ -73,7 +73,6 @@ const setActiveItem = (item) => {
 
 
 onMounted(() => {
-  
   fetchAllAdProductByAuthUser();  
 });
 </script>
