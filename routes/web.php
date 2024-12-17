@@ -34,6 +34,10 @@ Route::get('/cidades/anuncios/item/{adProduct:id}', function (AdProduct $adProdu
     ]);
 })->name('marketplace');
 
+Route::get('/perfil/meus-anuncios', function () {
+    return Inertia::render('Profile/AdDashboard');
+})->middleware(['auth', 'verified'])->name('profile.my-ads');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
