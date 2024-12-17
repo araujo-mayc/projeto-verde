@@ -13,7 +13,10 @@ export default {
     return apiClient.get('/');
   },
 
-  getById(Id) {
-    return apiClient.get(`/${Id}`);
+  getAllAdProductByUserId(user_id) {
+    return apiClient.get(`/${user_id}`);
+  },
+  getAllAdProductsByAuthUser() {
+    return apiClient.get(route('adproducts.auth'));
   },
 };

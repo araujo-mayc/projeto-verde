@@ -20,11 +20,11 @@ export default class useAdProducts {
       }
     };
 
-    const fetchAdProductById = async (Id) => {
+    const fetchAllAdProductByAuthUser = async () => {
       loading.value = true;
       try {
-        const response = await adProductService.getById(Id);
-        return response.data;
+        const response = await adProductService.getAllAdProductsByAuthUser();
+        adproducts.value.splice(0, adproducts.value.length, ...response.data);
       } catch (err) {
         error.value = err.message;
         return null;
@@ -33,6 +33,6 @@ export default class useAdProducts {
       }
     };
 
-    return { adproducts, fetchAdProducts, fetchAdProductById, loading, error };
+    return { adproducts, fetchAdProducts, fetchAllAdProductByAuthUser, loading, error };
   }
 }

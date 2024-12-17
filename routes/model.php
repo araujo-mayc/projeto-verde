@@ -10,4 +10,6 @@ Route::get('adproducts', [AdProductController::class,'index']);
 
 Route::middleware('auth')->group(function () {
 
+  Route::get('adproducts/auth', [AdProductController::class,'getAllByAuthUser'])
+  ->name('adproducts.auth');
 });

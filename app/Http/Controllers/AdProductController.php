@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdProduct;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAdProductRequest;
 use App\Http\Requests\UpdateAdProductRequest;
-use Illuminate\Support\Facades\Auth;
 
 class AdProductController extends Controller
 {
@@ -15,6 +15,20 @@ class AdProductController extends Controller
     public function index()
     {
         return AdProduct::all();
+    }
+    /**
+     * Display a listing of the resource of the auth user.
+     */
+    public function getAllByAuthUser()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['error' => 'Uusuário não autenticado'], 404);
+        }
+
+        $adProducts = AdProduct::where('user_id', $user->id)->get();
+        return $adProducts;
     }
 
     /**
