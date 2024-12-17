@@ -1,8 +1,30 @@
 <template>
-  <MainLayout :actived-page="'home'">
+  <MainLayout>
     <template #main>
-      <div class="flex gap-x-3">
-        <section name="filters" class="min-w-80 flex flex-col grow bg-white shadow-md px-4 py-3">
+      <div class="flex flex-col sm:flex-row sm:gap-x-3">
+        <section v-if="ismobile" name="mobile-filters" class="flex flex-col grow bg-white shadow-md px-4 py-3">
+          <h2 class="pb-3 font-bold">Anúncios</h2>
+          <div class="my-2">
+            <IconField>
+              <InputIcon class="pi pi-search" />
+              <InputText v-model="filters['global'].value" placeholder="O que está procurando?" fluid />
+            </IconField>
+          </div>
+          <div class="flex items-center justify-between pt-2">
+            <div class="flex gap-x-2">
+              <i class="pi pi-map-marker" style="font-size: 1.5rem; color: var(--neutral-500)"></i>
+              <label for="city" class="truncate">{{ city.name }} - {{ city.state }}</label>
+            </div>
+            <Link :href="route('select.city')" class="text-sky-600 underline">Alterar</Link>
+          </div>
+          <div class="flex w-full space-x-4 pt-4">
+            <Button :severity="activeItem === 'products' ? 'primary' : 'secondary'" @click="setActiveItem('products')"
+              label="Produtos" fluid />
+            <Button :severity="activeItem === 'services' ? 'primary' : 'secondary'" @click="setActiveItem('services')"
+            label="Serviços" fluid />
+          </div>
+        </section>
+        <section v-else name="web-filters" class="min-w-80 flex flex-col grow bg-white shadow-md px-4 py-3">
           <h2 class="pb-3 font-bold">Anúncios</h2>
           <div class="mt-2">
             <IconField>
@@ -35,7 +57,7 @@
                 <div class="grid grid-cols-12 gap-x-1 gap-y-3">
                     <div @click="selectItem(item)" v-for="(item, index) in slotProps.items" :key="index" class="col-span-6 md:col-span-4 xl:col-span-3 p-2">
                         <div class="bg-surface-0 dark:bg-surface-900 flex flex-col">
-                          <img class="rounded w-full" src="https://placehold.co/600x400" alt=""/>
+                          <img class="rounded w-full" :src="item.images || 'https://placehold.co/600x400'" alt=""/>
                           <div class="pt-3 px-1">
                             <span>R$ {{ parseFloat(item.prices).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) }}</span>
                             <div>
@@ -86,6 +108,17 @@ const selectItem = (item) => {
   router.visit(`/cidades/anuncios/item/${item.id}`);
 };
 
+const ismobile = ref(false);
+
+const handleResize = () => {
+  if (window.innerWidth <= 640) {
+    ismobile.value = true;
+  } else {
+    ismobile.value = false;
+  }
+};
+window.addEventListener('resize', handleResize);
+handleResize();
 
 onMounted(() => {
     fetchAdProducts();

@@ -1,5 +1,5 @@
 <template>
-      <div v-if="!hideMenu" class="flex justify-center gap-x-5 ">
+      <nav v-if="!hideMenu" class="flex justify-center gap-x-4 z-50">
         <Button 
         :severity="activedPage === 'home' ? 'primary' : 'secondary'" @click="redirectTo('/cidades')"
         size="small" class="!py-1" text>
@@ -10,7 +10,7 @@
         </Button>
         <Button 
         :severity="activedPage === 'my_ads' ? 'primary' : 'secondary'" @click="redirectTo('/perfil/meus-anuncios')"
-        size="small" class="!py-1" text>
+        size="small" class="!p-1" text>
           <div class="flex flex-col">
             <span class="material-icons">folder</span>
             <span class="font-base text-xs">Meus Anúncios</span>
@@ -18,7 +18,7 @@
         </Button>
         <Button 
           :severity="activedPage === 'notifications' ? 'primary' : 'secondary'" @click="redirectTo('notifications')" 
-          size="small" class="!py-1" text >
+          size="small" class="!p-1" text >
           <div class="flex flex-col">
             <span class="material-icons">notifications</span>
             <span class="font-base text-xs">Notificações</span>
@@ -32,7 +32,7 @@
             <span class="font-base text-xs">Perfil</span>
           </div>
         </Button>
-      </div>
+      </nav>
 </template>
 
 <script setup>

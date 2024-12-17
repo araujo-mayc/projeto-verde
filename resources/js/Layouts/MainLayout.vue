@@ -5,23 +5,23 @@
           <img class="size-12 mx-2 rounded-full" src="https://placehold.co/600?text=Logo" alt="" />
           <h2 class="font-bold text-sky-500">Feirine</h2>
       </div>
-      <Menu />
+      <Menu :hide-menu="hideMenu" :actived-page="activedPage" />
     </header>
     <section v-else name="menu" class="w-full px-2 py-1 fixed bottom-0 bg-gray-100" >
-      <Menu />
+      <Menu :hide-menu="hideMenu" :actived-page="activedPage" />
     </section>
-  <main class="flex grow justify-center bg-[var(--neutral-200)] mt-2">
-      <slot name="main" />
-  </main>
-  <footer class="bg-white">
-      <Divider />
-      <div class="flex items-center justify-between p-4">
-          <small>Copyright © 2024 Feirine</small>
-          <div>
-              <i class="pi pi-instagram"></i>
-          </div>
-      </div>
-  </footer>
+    <main class="flex grow justify-center bg-[var(--neutral-200)] mt-2">
+        <slot name="main" />
+    </main>
+    <footer class="bg-white" :class="ismobile? 'pb-14' : 'pb-0'">
+        <Divider />
+        <div class="flex items-center justify-between p-4">
+            <small>Copyright © 2024 Feirine</small>
+            <div>
+                <i class="pi pi-instagram"></i>
+            </div>
+        </div>
+    </footer>
 </div>
 
 </template>
@@ -30,6 +30,20 @@
 import { ref } from 'vue';
 import Menu from '@/Components/Menu.vue';
 import Divider from 'primevue/divider';
+
+defineProps({
+  hideMenu: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+    activedPage: {
+    type: String,
+    required: false,
+    default: 'home'
+  }
+});
+
 const ismobile = ref(false);
 
 const handleResize = () => {
